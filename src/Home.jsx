@@ -7,10 +7,12 @@ const Home = () => {
   const checkouthandler = async (amount) => {
     const {
       data: { key },
-    } = await axios.get("http://localhost:8000/api/getkey");
+    } = await axios.get("https://razorpaydemobackend.vercel.app/api/getkey");
     const {
       data: { order },
-    } = await axios.post("http://localhost:8000/checkout", { amount });
+    } = await axios.post("https://razorpaydemobackend.vercel.app/checkout", {
+      amount,
+    });
     console.log(window);
     const options = {
       key,
@@ -20,7 +22,8 @@ const Home = () => {
       description: "Razorpay tutorial",
       // image:"https://avatars.githubusercontent.com/u/96648429?s=96&v=4",
       order_id: order.id,
-      callback_url: "http://localhost:8000/paymentverification",
+      callback_url:
+        "https://razorpaydemobackend.vercel.app/paymentverification",
       prefill: {
         name: "Espace carre",
         email: "infoespacecarre@gmail.com",
